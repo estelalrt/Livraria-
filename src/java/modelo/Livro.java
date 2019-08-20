@@ -13,6 +13,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -35,14 +38,23 @@ public class Livro implements Serializable {
     private Long id;
     private String titulo;
     private Date data;
-    private Long pagina;
+    private Integer pagina;
+    @Lob 
     private String sinopse;
     private Long isbn;
     private String idioma;
-    private String foto;
+    private String foto1;
+    private String foto2;
+    private String foto3;
+   
+    @ManyToOne
+    private Editora editora;  
+    @ManyToOne
+    private Genero genero;
+    @ManyToMany
+    private List<Autor> autores;
     
-    @OneToMany(mappedBy = "Livro", cascade=CascadeType.ALL)
-    private List<>;
+    
     
     public Long getId() {
         return id;
@@ -68,11 +80,11 @@ public class Livro implements Serializable {
         this.data = data;
     }
 
-    public Long getPagina() {
+    public Integer getPagina() {
         return pagina;
     }
 
-    public void setPagina(Long pagina) {
+    public void setPagina(Integer pagina) {
         this.pagina = pagina;
     }
 
@@ -100,14 +112,49 @@ public class Livro implements Serializable {
         this.idioma = idioma;
     }
 
-    public String getFoto() {
-        return foto;
+    public String getFoto1() {
+        return foto1;
     }
 
-    public void setFoto(String foto) {
-        this.foto = foto;
+    public void setFoto1(String foto1) {
+        this.foto1 = foto1;
     }
 
+    public String getFoto2() {
+        return foto2;
+    }
+
+    public void setFoto2(String foto2) {
+        this.foto2 = foto2;
+    }
+
+    public String getFoto3() {
+        return foto3;
+    }
+
+    public void setFoto3(String foto3) {
+        this.foto3 = foto3;
+    }
+
+   
+
+    public Editora getEditora() {
+        return editora;
+    }
+
+    public void setEditora(Editora editora) {
+        this.editora = editora;
+    }
+
+    public Genero getGenero() {
+        return genero;
+    }
+
+    public void setGenero(Genero genero) {
+        this.genero = genero;
+    }
+    
+    
  }
     
 

@@ -6,15 +6,12 @@
 package modelo;
 
 import java.io.Serializable;
-import java.util.List;
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 
 /**
  *
@@ -22,27 +19,52 @@ import javax.persistence.OneToMany;
  */
 @Entity
 @NamedQueries({
-    @NamedQuery(name="Genero.findAll", query="SELECT d FROM Genero d"),
-    @NamedQuery(name="Genero.findFilter", query="SELECT d FROM Genero d WHERE d.nome LIKE :filtro")
+    @NamedQuery(name="Admin.findAll", query="SELECT d FROM Admin d"),
+    @NamedQuery(name="Admin.findFilter", query="SELECT d FROM Admin d WHERE d.nome LIKE :filtro")
 })
 
-
-public class Genero implements Serializable {
+public class Usuario implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    private String email;
+    private String senha;
+    private String tipo;
     private String nome;
-    @OneToMany(mappedBy = "Genero", cascade=CascadeType.ALL)
-    private List<Livro>livro;
-    
+    private String foto;
+
     public Long getId() {
         return id;
     }
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 
     public String getNome() {
@@ -53,5 +75,15 @@ public class Genero implements Serializable {
         this.nome = nome;
     }
 
+    public String getFoto() {
+        return foto;
+    }
+
+    public void setFoto(String foto) {
+        this.foto = foto;
+    }
+    
+    
+   
     
 }
